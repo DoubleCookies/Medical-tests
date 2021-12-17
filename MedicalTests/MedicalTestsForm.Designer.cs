@@ -33,6 +33,7 @@ namespace MedicalTests
             this.textBoxStartQuestionNumber = new System.Windows.Forms.TextBox();
             this.buttomProcessFormat2 = new System.Windows.Forms.Button();
             this.buttomProcessFormat4 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttomProcessFormat1
@@ -47,7 +48,7 @@ namespace MedicalTests
             // 
             // textBoxStartQuestionNumber
             // 
-            this.textBoxStartQuestionNumber.Location = new System.Drawing.Point(159, 184);
+            this.textBoxStartQuestionNumber.Location = new System.Drawing.Point(242, 184);
             this.textBoxStartQuestionNumber.Name = "textBoxStartQuestionNumber";
             this.textBoxStartQuestionNumber.Size = new System.Drawing.Size(144, 22);
             this.textBoxStartQuestionNumber.TabIndex = 1;
@@ -73,17 +74,27 @@ namespace MedicalTests
             this.buttomProcessFormat4.UseVisualStyleBackColor = true;
             this.buttomProcessFormat4.Click += new System.EventHandler(this.ButtonProcessFormat3_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(73, 187);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 16);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Start question number";
+            // 
             // MedicalTestsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 228);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttomProcessFormat4);
             this.Controls.Add(this.buttomProcessFormat2);
             this.Controls.Add(this.textBoxStartQuestionNumber);
             this.Controls.Add(this.buttomProcessFormat1);
             this.Name = "MedicalTestsForm";
-            this.Text = "MedTests";
+            this.Text = "MedicalTests";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,6 +106,7 @@ namespace MedicalTests
         private System.Windows.Forms.TextBox textBoxStartQuestionNumber;
         private System.Windows.Forms.Button buttomProcessFormat2;
         private System.Windows.Forms.Button buttomProcessFormat4;
+        private System.Windows.Forms.Label label1;
     }
 }
 

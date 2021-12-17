@@ -6,6 +6,7 @@ namespace MedicalTests
 {
     public partial class MedicalTestsForm : Form
     {
+        delegate string ProcessText(string text, int startNum);
         public MedicalTestsForm()
         {
             InitializeComponent();
@@ -16,9 +17,25 @@ namespace MedicalTests
 
         private void ButtonProcessFormat1_Click(object sender, EventArgs e)
         {
+            ProcessTaskWithFormat(ProcessingMethods.ProcessFormat1);
+        }
+
+        private void ButtonProcessFormat2_Click(object sender, EventArgs e)
+        {
+            ProcessTaskWithFormat(ProcessingMethods.ProcessFormat2);
+        }
+
+        private void ButtonProcessFormat3_Click(object sender, EventArgs e)
+        {
+            ProcessTaskWithFormat(ProcessingMethods.ProcessFormat3);
+        }
+
+        private void ProcessTaskWithFormat(ProcessText process) {
             bool isFileSelected = GetFileFromDialog();
             if (isFileSelected)
-                ProcessTasks(fileContent, filePath);
+            {
+                ProcessTasks(fileContent, filePath, process);
+            }
         }
 
         private bool GetFileFromDialog() {
@@ -42,40 +59,9 @@ namespace MedicalTests
             return false;
         }
 
-        private void ProcessTasks(string text, string input) {
+        private void ProcessTasks(string text, string input, ProcessText processText) {
             string outputPath = input.Insert(input.Length-4, "_output");
-            string result = ProcessingMethods.ProcessText(text, int.Parse(textBoxStartQuestionNumber.Text));
-            File.WriteAllText(outputPath, result);
-        }
-        
-
-        private void ButtonProcessFormat2_Click(object sender, EventArgs e)
-        {
-            bool isFileSelected = GetFileFromDialog();
-            if (isFileSelected) {
-                ProcessTasksOtherFormat(fileContent, filePath);
-            }
-        }
-
-        private void ProcessTasksOtherFormat(string text, string input)
-        {
-            string outputPath = input.Insert(input.Length - 4, "_output");
-            string result = ProcessingMethods.ProcessTextOtherFormat(text, int.Parse(textBoxStartQuestionNumber.Text));
-            File.WriteAllText(outputPath, result);
-        }
-
-        private void ButtonProcessFormat3_Click(object sender, EventArgs e)
-        {
-            bool isFileSelected = GetFileFromDialog();
-            if (isFileSelected) {
-                ProcessTasksLastFormat(fileContent, filePath);
-            }
-        }
-
-        private void ProcessTasksLastFormat(string text, string input)
-        {
-            string outputPath = input.Insert(input.Length - 4, "_output");
-            string result = ProcessingMethods.ProcessTextLastFormat(text, int.Parse(textBoxStartQuestionNumber.Text));
+            string result = processText(text, int.Parse(textBoxStartQuestionNumber.Text));
             File.WriteAllText(outputPath, result);
         }
     }

@@ -9,7 +9,7 @@ namespace MedicalTests
         private static readonly string[] answerProcPositive = new string[] { "shift", "~%100%", "~%50%", "~%33.333%", "~%25%", "~%20%", "~%16.666%", "~%14.289%", "~%12.5%", "~%11.111%", "~%10%", "~%9.091%", "~%8.333%" };
         private static readonly string[] answerProcNegative = new string[] { "shift", "~%-100%", "~%-50%", "~%-33.333%", "~%-25%", "~%-20%", "~%-16.666%", "~%-14.289%", "~%-12.5%", "~%-11.111%", "~%-10%", "~%-9.091%", "~%-8.333%" };
 
-        public static string ProcessText(string text, int startNum)
+        public static string ProcessFormat1(string text, int startNum)
         {
             string res = "";
             string[] tasks = text.Split(new string[] { "***\r\n" }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -60,7 +60,7 @@ namespace MedicalTests
             return res;
         }
 
-        public static string ProcessTextOtherFormat(string text, int startNum)
+        public static string ProcessFormat2(string text, int startNum)
         {
             string res = "";
             string[] tasks = text.Split(new string[] { "\r\n\r\n" }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -126,7 +126,7 @@ namespace MedicalTests
         }
 
 
-        public static string ProcessTextLastFormat(string text, int startNum)
+        public static string ProcessFormat3(string text, int startNum)
         {
             string res = "";
             string[] tasks = text.Split(new string[] { "\r\n\r\n" }, System.StringSplitOptions.RemoveEmptyEntries);
