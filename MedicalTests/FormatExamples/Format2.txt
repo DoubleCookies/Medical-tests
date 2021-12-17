@@ -1,0 +1,38 @@
+##theme 1
+##score 1
+##type 2
+##time 0:00:00
+Patient B complains of the pain in the right iliac area. His physical examination presents symptoms similar to acute appendicitis. What clinical sings may testify the inflammatory process in the patient? (5)
++leukocytosis
+thrombocytosis
+erythrocytosis
++fever
++increased erythrocyte sedimentation rate
+hypoproteinemia
++increased globulin
++C-reactive protein uptake in blood
+
+##theme 1
+##score 1
+##type 2
+##time 0:00:00
+Patient A. complains of sharp pain when he swallows, high temperature (38 degree  C), malaise, headache. The physical examination of his larynx has revealed evident hyperemia due to edema and infiltration of tunica mucosa of pharynx, acute swelling of palatine tonsils. Submandibular glands are painful and enlarged.  The diagnosis is lacunar tonsillitis.  What is sharp edema of larynx at inflammation due to? What is sharp edema of larynx at inflammation due to? What factors further the development of edema in the inflammation focus? (4)
+increase of oncotic pressure in blood plasma
++increase of  oncotic pressure in intercellular fluid
+decrease of oncotic pressure (hypoonkia) in tissues
++rise of the vascular wall permeability
+hyposmia in tissues
++rise of blood pressure in veins
++hyperosmia in the intercellular fluid
+
+##theme 1
+##score 1
+##type 2
+##time 0:00:00
+Patient A. complains of sharp pain when he swallows, high temperature (38 degree C), malaise, headache. The physical examination of his larynx has revealed evident hyperemia due to edema and infiltration of tunica mucosa of pharynx, acute swelling of palatine tonsils. Submandibular glands are painful and enlarged.  The diagnosis is lacunar tonsillitis.  What is redness of mucous membrane conditioned by? (3)
++vasodilatation
+decrease of blood outflow
++increase of blood inflow
+erythrocyte aggregation
++increase of functioning vessels amount
+increase of arteriovenous difference in oxygen pressure
