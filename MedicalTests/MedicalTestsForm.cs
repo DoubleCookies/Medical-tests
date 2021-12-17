@@ -6,12 +6,12 @@ namespace MedicalTests
 {
     public partial class MedicalTestsForm : Form
     {
-        delegate string ProcessText(string text, int startNum);
         public MedicalTestsForm()
         {
             InitializeComponent();
         }
 
+        delegate string ProcessText(string text, int startNum);
         string fileContent = "";
         string filePath = "";
 
@@ -33,15 +33,12 @@ namespace MedicalTests
         private void ProcessTaskWithFormat(ProcessText process) {
             bool isFileSelected = GetFileFromDialog();
             if (isFileSelected)
-            {
                 ProcessTasks(fileContent, filePath, process);
-            }
         }
 
         private bool GetFileFromDialog() {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "C:\\Users\\nemyt\\Desktop";
                 openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
