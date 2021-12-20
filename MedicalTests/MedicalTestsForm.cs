@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace MedicalTests
         public MedicalTestsForm()
         {
             InitializeComponent();
+            comboBoxFormat.SelectedIndex = 0;
         }
 
         delegate string ProcessText(string text, int startNum);
@@ -60,6 +62,23 @@ namespace MedicalTests
             string outputPath = input.Insert(input.Length-4, "_output");
             string result = processText(text, int.Parse(textBoxStartQuestionNumber.Text));
             File.WriteAllText(outputPath, result);
+        }
+
+        private void buttonOpenFormatFolder_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, @"FormatExamples\");
+            Process.Start(path);
+        }
+
+        private void buttonProcess_Click(object sender, EventArgs e)
+        {
+            string format = comboBoxFormat.Text;
+            if (format == "Format1")
+                ProcessTaskWithFormat(ProcessingMethods.ProcessFormat1);
+            if (format == "Format2")
+                ProcessTaskWithFormat(ProcessingMethods.ProcessFormat2);
+            if (format == "Format3")
+                ProcessTaskWithFormat(ProcessingMethods.ProcessFormat3);
         }
     }
 }
