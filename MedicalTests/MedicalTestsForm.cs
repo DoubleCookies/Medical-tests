@@ -17,19 +17,20 @@ namespace MedicalTests
         string fileContent = "";
         string filePath = "";
 
-        private void ButtonProcessFormat1_Click(object sender, EventArgs e)
+        private void buttonOpenFormatFolder_Click(object sender, EventArgs e)
         {
-            ProcessTaskWithFormat(ProcessingMethods.ProcessFormat1);
+            string path = Path.Combine(Environment.CurrentDirectory, @"FormatExamples\");
+            Process.Start(path);
         }
 
-        private void ButtonProcessFormat2_Click(object sender, EventArgs e)
+        private void buttonProcess_Click(object sender, EventArgs e)
         {
-            ProcessTaskWithFormat(ProcessingMethods.ProcessFormat2);
-        }
-
-        private void ButtonProcessFormat3_Click(object sender, EventArgs e)
-        {
-            ProcessTaskWithFormat(ProcessingMethods.ProcessFormat3);
+            string format = comboBoxFormat.Text;
+            switch (format) {
+                case "Format1": ProcessTaskWithFormat(ProcessingMethods.ProcessFormat1); break;
+                case "Format2": ProcessTaskWithFormat(ProcessingMethods.ProcessFormat2); break;
+                case "Format3": ProcessTaskWithFormat(ProcessingMethods.ProcessFormat3); break;
+            }
         }
 
         private void ProcessTaskWithFormat(ProcessText process) {
@@ -62,23 +63,6 @@ namespace MedicalTests
             string outputPath = input.Insert(input.Length-4, "_output");
             string result = processText(text, int.Parse(textBoxStartQuestionNumber.Text));
             File.WriteAllText(outputPath, result);
-        }
-
-        private void buttonOpenFormatFolder_Click(object sender, EventArgs e)
-        {
-            string path = Path.Combine(Environment.CurrentDirectory, @"FormatExamples\");
-            Process.Start(path);
-        }
-
-        private void buttonProcess_Click(object sender, EventArgs e)
-        {
-            string format = comboBoxFormat.Text;
-            if (format == "Format1")
-                ProcessTaskWithFormat(ProcessingMethods.ProcessFormat1);
-            if (format == "Format2")
-                ProcessTaskWithFormat(ProcessingMethods.ProcessFormat2);
-            if (format == "Format3")
-                ProcessTaskWithFormat(ProcessingMethods.ProcessFormat3);
         }
     }
 }
