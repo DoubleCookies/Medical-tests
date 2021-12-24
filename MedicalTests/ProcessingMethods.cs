@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace MedicalTests
 {
-    //TODO: можно отрефакторить сами методы обработки форматов, разбив на подблоки (вопрос, ответ)
     static class ProcessingMethods
     {
         private static readonly string[] answerProcPositive = new string[] { "shift", "~%100%", "~%50%", "~%33.333%", "~%25%", "~%20%", "~%16.666%", "~%14.289%", "~%12.5%", "~%11.111%", "~%10%", "~%9.091%", "~%8.333%" };
@@ -31,9 +30,8 @@ namespace MedicalTests
                 int[] answersNumbersArray = GetAnswerNumbers(answers);
 
                 string answersText = ProcessAnswers(taskStrings, answersNumbersArray);
-                taskRes += answersText;
+                taskRes += answersText + "}\r\n\r\n";
 
-                taskRes += "}\r\n\r\n";
                 resultText += taskRes;
             }
             return resultText;
@@ -57,25 +55,21 @@ namespace MedicalTests
 
         private static string ProcessAnswers(string[] taskStrings, int[] answerNumbers) {
             string answersText = "";
-            //сами ответы
             for (int j = 1; j < taskStrings.Length - 1; j++)
             {
                 string answerString = taskStrings[j].Substring(j.ToString().Length + 1).Trim();
                 if (answerNumbers.Length == 1)
                 {
-                    if (answerNumbers.Contains(j))
-                        answersText += "=" + answerString + "\r\n";
-                    else
-                        answersText += "~" + answerString + "\r\n";
+                    answersText += answerNumbers.Contains(j) ? "=" : "~";
+                    answersText += answerString + "\r\n";
                 }
                 else
                 {
                     int positive = answerNumbers.Length;
                     int negative = taskStrings.Length - 2 - positive;
-                    if (answerNumbers.Contains(j))
-                        answersText += answerProcPositive[positive] + answerString + "\r\n";
-                    else
-                        answersText += answerProcNegative[negative] + answerString + "\r\n";
+
+                    answersText += answerNumbers.Contains(j) ? answerProcPositive[positive] : answerProcNegative[negative];
+                    answersText += answerString + "\r\n";
                 }
             }
             return answersText;
@@ -83,7 +77,7 @@ namespace MedicalTests
 
         public static string ProcessFormat2(string text, int startNum)
         {
-            string res = "";
+            resultText = "";
             string[] tasks = text.Split(new string[] { "\r\n\r\n" }, System.StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < tasks.Length; i++)
             {
@@ -98,17 +92,17 @@ namespace MedicalTests
 
                 int[] answersNumbersArray = GetAnswersFormat2(taskStrings);
 
-                taskRes += ProcessAnswersFormat2(questionString, taskStrings, answersNumbersArray);
+                string answers = ProcessAnswersFormat2(questionString, taskStrings, answersNumbersArray);
+                taskRes += answers + "}\r\n\r\n";
 
-                taskRes += "}\r\n\r\n";
-                res += taskRes;
+                resultText += taskRes;
             }
-            return res;
+            return resultText;
         }
 
         private static string ProcessQuestionsFormat2(string[] taskStrings, ref int answersCount) {
             string resultText = "";
-            //вопрос
+
             int questionString = 4;
             string question = taskStrings[questionString].Trim();
             int braceLeft = question.LastIndexOf('(');
@@ -149,22 +143,18 @@ namespace MedicalTests
 
                 if (answersNumbersArray.Length == 1)
                 {
-                    if (answersNumbersArray.Contains(j))
-                        resultText += "=" + answerString + "\r\n";
-                    else
-                        resultText += "~" + answerString + "\r\n";
+                    resultText += answersNumbersArray.Contains(j) ? "=" : "~";
+                    resultText += answerString + "\r\n";
                 }
                 else
                 {
                     int positive = answersNumbersArray.Length;
                     int negative = taskStrings.Length - 1 - questionString - positive;
-                    if (answersNumbersArray.Contains(j))
-                        resultText += answerProcPositive[positive] + answerString + "\r\n";
-                    else
-                        resultText += answerProcNegative[negative] + answerString + "\r\n";
+
+                    resultText += answersNumbersArray.Contains(j) ? answerProcPositive[positive] : answerProcNegative[negative];
+                    resultText += answerString + "\r\n";
                 }
             }
-
             return resultText;
         }
 
