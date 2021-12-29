@@ -87,7 +87,7 @@ namespace MedicalTests
                 int answersCount = 0;
                 int questionString = 4;
 
-                string formattedQuestion = ProcessQuestionsFormat2(taskStrings, ref answersCount);
+                string formattedQuestion = ProcessQuestionsFormat2(questionString, taskStrings, ref answersCount);
                 taskRes += formattedQuestion;
 
                 int[] answersNumbersArray = GetAnswersFormat2(taskStrings);
@@ -100,10 +100,9 @@ namespace MedicalTests
             return resultText;
         }
 
-        private static string ProcessQuestionsFormat2(string[] taskStrings, ref int answersCount) {
+        private static string ProcessQuestionsFormat2(int questionString, string[] taskStrings, ref int answersCount) {
             string resultText = "";
 
-            int questionString = 4;
             string question = taskStrings[questionString].Trim();
             int braceLeft = question.LastIndexOf('(');
             int braceRight = question.LastIndexOf(')');
@@ -226,7 +225,7 @@ namespace MedicalTests
                     int positive = answersNumbersArray.Length;
                     int negative = taskStrings.Length - questionString - positive - 2;
 
-                    resultText += answersNumbersArray.Contains(j - questionString)?  answerProcPositive[positive] : answerProcNegative[negative];
+                    resultText += answersNumbersArray.Contains(j - questionString) ? answerProcPositive[positive] : answerProcNegative[negative];
                     resultText += answerString + "\r\n";
                 }
             }
